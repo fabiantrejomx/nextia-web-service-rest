@@ -1,0 +1,161 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.fabian.com/todo/soap/task" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.fabian.com/todo/soap/task" targetNamespace="http://www.fabian.com/todo/soap/task">
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.fabian.com/todo/soap/task">
+            <xsd:element name="TaskRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="subject" type="xsd:string"/>
+                        <xsd:element name="isDone" type="xsd:boolean"/>
+                        <xsd:element name="userId" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="TaskResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:string"/>
+                        <xsd:element name="subject" type="xsd:string"/>
+                        <xsd:element name="isDone" type="xsd:boolean"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="DeleteTaskRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="taskId" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="DeleteTaskResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="status" type="xsd:boolean"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="UpdateTaskRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:string"/>
+                        <xsd:element name="subject" type="xsd:string"/>
+                        <xsd:element name="isDone" type="xsd:boolean"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="UpdateTaskResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="status" type="xsd:boolean"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="AllTaskRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="userId" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="AllTaskResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="taskInfo" type="tns:taskInfo"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="taskInfo">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:string"/>
+                    <xsd:element name="subject" type="xsd:string"/>
+                    <xsd:element name="isDone" type="xsd:boolean"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="AllTaskRequest">
+        <wsdl:part element="tns:AllTaskRequest" name="AllTaskRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="UpdateTaskResponse">
+        <wsdl:part element="tns:UpdateTaskResponse" name="UpdateTaskResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="DeleteTaskResponse">
+        <wsdl:part element="tns:DeleteTaskResponse" name="DeleteTaskResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="TaskRequest">
+        <wsdl:part element="tns:TaskRequest" name="TaskRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="DeleteTaskRequest">
+        <wsdl:part element="tns:DeleteTaskRequest" name="DeleteTaskRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="UpdateTaskRequest">
+        <wsdl:part element="tns:UpdateTaskRequest" name="UpdateTaskRequest"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="TaskResponse">
+        <wsdl:part element="tns:TaskResponse" name="TaskResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="AllTaskResponse">
+        <wsdl:part element="tns:AllTaskResponse" name="AllTaskResponse"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="TaskTodo">
+        <wsdl:operation name="AllTask">
+            <wsdl:input message="tns:AllTaskRequest" name="AllTaskRequest"> </wsdl:input>
+            <wsdl:output message="tns:AllTaskResponse" name="AllTaskResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UpdateTask">
+            <wsdl:input message="tns:UpdateTaskRequest" name="UpdateTaskRequest"> </wsdl:input>
+            <wsdl:output message="tns:UpdateTaskResponse" name="UpdateTaskResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="DeleteTask">
+            <wsdl:input message="tns:DeleteTaskRequest" name="DeleteTaskRequest"> </wsdl:input>
+            <wsdl:output message="tns:DeleteTaskResponse" name="DeleteTaskResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Task">
+            <wsdl:input message="tns:TaskRequest" name="TaskRequest"> </wsdl:input>
+            <wsdl:output message="tns:TaskResponse" name="TaskResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="TaskTodoSoap11" type="tns:TaskTodo">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="AllTask">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="AllTaskRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="AllTaskResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UpdateTask">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="UpdateTaskRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="UpdateTaskResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="DeleteTask">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="DeleteTaskRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="DeleteTaskResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Task">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="TaskRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="TaskResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="TaskTodoService">
+        <wsdl:port binding="tns:TaskTodoSoap11" name="TaskTodoSoap11">
+            <soap:address location="http://localhost:8080/ws"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

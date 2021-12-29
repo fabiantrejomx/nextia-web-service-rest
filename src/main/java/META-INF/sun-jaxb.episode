@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb" if-exists="true" version="2.1">
+      
+    <!--
+
+Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.3.0 
+Visite <a href="https://javaee.github.io/jaxb-v2/">https://javaee.github.io/jaxb-v2/</a> 
+Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+Generado el: 2021.12.29 a las 03:50:41 PM CST 
+
+  -->
+      
+    <bindings xmlns:tns="http://www.fabian.com/todo/soap/task" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="com.fabian.rest.client.task"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="tns:TaskRequest">
+                  
+            <class ref="com.fabian.rest.client.task.TaskRequest"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="tns:TaskResponse">
+                  
+            <class ref="com.fabian.rest.client.task.TaskResponse"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="tns:DeleteTaskRequest">
+                  
+            <class ref="com.fabian.rest.client.task.DeleteTaskRequest"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="tns:DeleteTaskResponse">
+                  
+            <class ref="com.fabian.rest.client.task.DeleteTaskResponse"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="tns:UpdateTaskRequest">
+                  
+            <class ref="com.fabian.rest.client.task.UpdateTaskRequest"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="tns:UpdateTaskResponse">
+                  
+            <class ref="com.fabian.rest.client.task.UpdateTaskResponse"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="tns:AllTaskRequest">
+                  
+            <class ref="com.fabian.rest.client.task.AllTaskRequest"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="tns:AllTaskResponse">
+                  
+            <class ref="com.fabian.rest.client.task.AllTaskResponse"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:taskInfo">
+                  
+            <class ref="com.fabian.rest.client.task.TaskInfo"/>
+                
+        </bindings>
+          
+    </bindings>
+    
+</bindings>
