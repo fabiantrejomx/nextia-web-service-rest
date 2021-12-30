@@ -1,5 +1,6 @@
 package com.fabian.rest.client.security;
 
+import com.fabian.rest.client.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,10 +21,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserDetailsService userDetailsService;
+    private final UserRepository userRepository;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        final AuthFilter authFilter = new AuthFilter(authenticationManager());
+        final AuthFilter authFilter = new AuthFilter(authenticationManager(), userRepository);
         authFilter.setFilterProcessesUrl("/api/v1/login");
 
         http.cors().and().csrf().disable();

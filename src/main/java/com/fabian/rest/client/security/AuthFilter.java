@@ -3,11 +3,13 @@ package com.fabian.rest.client.security;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.JWT;
 import com.fabian.rest.client.form.AccessRequest;
+import com.fabian.rest.client.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -24,6 +26,7 @@ import java.util.Map;
 public class AuthFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
+    private final UserRepository userRepository;
 
     @Override
     public Authentication attemptAuthentication(
@@ -50,8 +53,11 @@ public class AuthFilter extends UsernamePasswordAuthenticationFilter {
 
         final String token = createToken(user.getUsername(), request);
 
+        final com.fabian.rest.client.entity.User userFromDB = userRepository.findByEmail(user.getUsername()).get();
+
         final Map<String, String> body = new HashMap<>();
         body.put("token", token);
+        body.put("userId", userFromDB.getId());
         new ObjectMapper().writeValue(response.getOutputStream(), body);
     }
 
