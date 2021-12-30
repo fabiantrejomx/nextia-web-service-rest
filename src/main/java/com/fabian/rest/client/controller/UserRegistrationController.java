@@ -1,6 +1,7 @@
-package com.fabian.rest.client.security;
+package com.fabian.rest.client.controller;
 
 import com.fabian.rest.client.form.AccessRequest;
+import com.fabian.rest.client.security.UserServiceSecurity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

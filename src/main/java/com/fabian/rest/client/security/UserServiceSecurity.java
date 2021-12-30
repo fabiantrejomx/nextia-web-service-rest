@@ -40,11 +40,11 @@ public class UserServiceSecurity implements UserDetailsService {
             propagation = Propagation.REQUIRED,
             isolation = Isolation.DEFAULT,
             rollbackFor = {Exception.class, RuntimeException.class})
-    public void signUpUser(final AccessRequest request) {
+    public void signUpUser(final AccessRequest request) throws Exception {
         final boolean userIsPresent = userRepository.findByEmail(request.getEmail()).isPresent();
 
         if (userIsPresent) {
-            throw new IllegalStateException("email already taken");
+            throw new Exception("email already taken");
         }
 
         final String encodedPassword = bCryptPasswordEncoder.encode(request.getPassword());
