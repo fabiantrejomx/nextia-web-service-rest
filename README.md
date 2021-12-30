@@ -44,5 +44,5 @@ mvn clean install
 
 * GET ALL TASKS
 ```sh
-[GET] - http://localhost:8081/task/users/{userId}
+[GET] - http://localhost:8081/task/user/{userId}
 ```
