@@ -1,5 +1,6 @@
 package com.fabian.rest.client.wsclient;
 
+import com.fabian.rest.client.security.SecurityHelper;
 import com.fabian.rest.client.task.AllTaskRequest;
 import com.fabian.rest.client.task.AllTaskResponse;
 import com.fabian.rest.client.task.DeleteTaskRequest;
@@ -21,10 +22,12 @@ import org.springframework.ws.soap.client.core.SoapActionCallback;
 @RequiredArgsConstructor
 public class TaskClient {
 
+    private final SecurityHelper securityHelper;
     private final WebServiceTemplate template;
     private static final String WS_URI = "http://localhost:8080/ws";
 
-    public AllTaskResponse getTasksByUserId(final String userId) {
+    public AllTaskResponse getTasksByUserId() {
+        final String userId = securityHelper.getUserSessionId();
         final AllTaskRequest request = new AllTaskRequest();
         request.setUserId(userId);
 

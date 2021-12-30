@@ -27,9 +27,9 @@ public class TaskController {
 
     private final TaskClient taskClient;
 
-    @GetMapping(value = "/user/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AllTaskResponse> getAllTasksByUserId(@PathVariable("userId") final String userId){
-        return ResponseEntity.ok(taskClient.getTasksByUserId(userId));
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AllTaskResponse> getAllTasksByUserId(){
+        return ResponseEntity.ok(taskClient.getTasksByUserId());
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
